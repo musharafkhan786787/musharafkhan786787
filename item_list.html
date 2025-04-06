@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Items</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fafafa;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .button:hover {
+            background-color: #05101c;
+        }
+    </style>
+    <script>
+        // JavaScript to confirm before deletion
+        function confirmDelete(itemName) {
+            return confirm("Are you sure you want to delete " + itemName + "?");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>All Items</h2>
+        <a href="{% url 'item-create' %}" class="button">Create New Item</a>
+        <ul>
+            {% for item in items %}
+                <li>
+                    {{ item.name }} - 
+                    <a href="{% url 'item-update' item.pk %}">Edit</a> | 
+                    <a href="{% url 'item-delete' item.pk %}" >Delete</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
